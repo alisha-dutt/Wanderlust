@@ -1,13 +1,16 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const indexRouter = require('./controllers/index');
+const usersRouter = require('./controllers/users');
+// reference to custom controllers
+const destinations = require('./controllers/destinations');
+const auth = require('./controllers/auth');
 
-var app = express();
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -19,8 +22,58 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// use dotenv to read .env file with config vars
+if (process.env.NODE_ENV != 'production') {
+  require('dotenv').config()
+}
+
+// mongodb connection using mongoose
+const mongoose = require('mongoose');
+
+mongoose.connect(process.env.CONNECTION_STRING)
+.then((res) => {
+  console.log('Connected to MongoDB');
+})
+.catch(() => {
+  console.log('Connection to MongoDB Failed');
+});
+
+// passport auth config
+const passport = require('passport');
+const session = require('express-session');
+
+app.use(session({
+  secret: process.env.PASSPORT_SECRET,
+  resave: true,
+  saveUninitialized: false
+}));
+
+// start passport w/session support
+app.use(passport.initialize());
+app.use(passport.session())
+
+const User = require('./models/user');
+passport.use(User.createStrategy());
+
+// read / write session vars
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+// map all requests at /destinations to our own destinations.js controller
+app.use('/destinations', destinations);
+app.use('/auth', auth);
+
+// add hbs extension function to select the correct dropdown option when editing
+const hbs = require('hbs');
+hbs.registerHelper('selectOption', (currentValue, selectedValue) => {
+  let selectedProperty = '';
+  if (currentValue == selectedValue) {
+    selectedProperty = ' selected';
+  }
+  return new hbs.SafeString(`<option${selectedProperty}>${currentValue}</option>`);
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
