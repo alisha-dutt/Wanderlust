@@ -1,11 +1,9 @@
 /* Google Font */
-@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@300&family=Barlow:wght@300&family=PT+Serif&family=Scope+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
 
 body {
-  font-family: 'Assistant', sans-serif;
-  font-family: 'Barlow', sans-serif;
-  font-family: 'PT Serif', serif;
-  font-family: 'Scope One', serif;
+  font-family: 'Josefin Sans', sans-serif;
 }
 
 a {
@@ -17,8 +15,9 @@ main {
 }
 
 .navbar-dark {
-  background-color: #DB0007;
+  background-color: #4e7113;
   padding-left: 20px;
+  /* min-height: 20px; */
 }
 
 h1, i {
@@ -52,7 +51,19 @@ thead {
   cursor: pointer;
 }
 main{
-  background-image: url(../images/home.jpg);
+  background-image: url(../images/banner.jpg);
   background-size: cover;
-  height: 800px;
+  height: 770px;
+}
+.bg-translucent{
+  background-color: #ffffffb2;
+  }
+.home-loud{
+  font-size: 120px;
+  color: white;
+  font-family: 'Abril Fatface', cursive;
+  filter: drop-shadow(0 0 0.75rem #4caf50);
+}
+.drop{
+  filter: drop-shadow(0 0 0.75rem #4caf50);
 }
