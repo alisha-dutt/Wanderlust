@@ -1,12 +1,13 @@
 <h1>Destinations Details</h1>
-<form method="post" enctype="multipart/form-data">
+{{!-- <form method="post" enctype="multipart/form-data"> --}}
+<form method="post">
     <fieldset>
         <label for="name">Name: *</label>
-        <input type="text" name="name" id="name" required />
+        <input type="text" name="placeName" id="placeName" required />
     </fieldset>
     <fieldset>
         <label for="city">City: *</label>
-        <select name="city" id="city" required>
+        <select name="placeCity" id="placeCity" required>
             {{#each cities}}
                 <option>{{this.name}}</option>
             {{/each}}
@@ -17,9 +18,9 @@
         <label for="comments">Comments:</label>
         <textarea name="comments" id="comments"></textarea>
     </fieldset>
-    {{!-- <fieldset>
+    <fieldset>
         <label for="picture">Picture:</label>
         <input type="file" name="picture" id="picture" accept="image/*" />
-    </fieldset> --}}
+    </fieldset>
     <button class="btn btn-secondary offset-1">Save</button>
 </form>

@@ -2,13 +2,13 @@
 <form method="post" enctype="multipart/form-data">
     <fieldset>
         <label for="name">Name: *</label>
-        <input type="text" name="name" id="name" value="{{destinations.name}}" required />
+        <input type="text" name="placeName" id="placeName" value="{{destinations.placeName}}" required />
     </fieldset>
      <fieldset>
         <label for="city">City: *</label>
-        <select name="city" id="city" required>
+        <select name="placeCity" id="placeCity" required>
             {{#each cities}}
-                {{selectOption this.name ../destinations.city}}
+                {{selectOption this.name ../destinations.placeCity}}
             {{/each}}
         </select>
     </fieldset>

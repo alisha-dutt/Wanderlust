@@ -1,4 +1,6 @@
 <h1>All Destinations</h1>
+<a class="nav-link text-dark btn btn-secondary offset-1" href="/destinations/create">Add Your Experience</a>
+
 {{#if destinations.length}}
   <table>
     <thead>
@@ -6,7 +8,7 @@
         <th>Name</th>
         <th>City</th>
         <th>Comments</th>
-        {{!-- <th>Picture</th> --}}
+        <th>Picture</th>
         <th>Edit</th>
         <th>Delete</th>
       </tr>
@@ -14,14 +16,14 @@
     <tbody>
       {{#each destinations}}
         <tr>
-          <td>{{this.name}}</td>
-          <td>{{this.city}}</td>
+          <td>{{this.placeName}}</td>
+          <td>{{this.placeCity}}</td>
           <td>{{this.comments}}</td>
-          {{!-- <td>
+          <td>
             {{#if this.picture}}
               <img src="{{this.picture}}" alt="{{this.name}}" width="100" height="100" />
             {{/if}}
-          </td> --}}
+          </td>
           <td><a href="/destinations/{{this._id}}/edit">Edit</a></td>
           <td><a href="/destinations/{{this._id}}/delete">Delete</a></td>
         </tr>
