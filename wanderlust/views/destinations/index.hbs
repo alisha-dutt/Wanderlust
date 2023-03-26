@@ -1,0 +1,33 @@
+<h1>All Destinations</h1>
+{{#if destinations.length}}
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>City</th>
+        <th>Comments</th>
+        {{!-- <th>Picture</th> --}}
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each destinations}}
+        <tr>
+          <td>{{this.name}}</td>
+          <td>{{this.city}}</td>
+          <td>{{this.comments}}</td>
+          {{!-- <td>
+            {{#if this.picture}}
+              <img src="{{this.picture}}" alt="{{this.name}}" width="100" height="100" />
+            {{/if}}
+          </td> --}}
+          <td><a href="/destinations/{{this._id}}/edit">Edit</a></td>
+          <td><a href="/destinations/{{this._id}}/delete">Delete</a></td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+{{else}}
+  <p>No destinations found.</p>
+{{/if}}

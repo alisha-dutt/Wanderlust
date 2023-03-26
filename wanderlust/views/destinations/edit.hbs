@@ -1,0 +1,24 @@
+<h1>Edit Destination</h1>
+<form method="post" enctype="multipart/form-data">
+    <fieldset>
+        <label for="name">Name: *</label>
+        <input type="text" name="name" id="name" value="{{destinations.name}}" required />
+    </fieldset>
+     <fieldset>
+        <label for="city">City: *</label>
+        <select name="city" id="city" required>
+            {{#each cities}}
+                {{selectOption this.name ../destinations.city}}
+            {{/each}}
+        </select>
+    </fieldset>
+    <fieldset>
+        <label for="comments">Comments:</label>
+        <textarea name="comments" id="comments">{{destinations.comments}}</textarea>
+    </fieldset>
+    <fieldset>
+        <label for="picture">Picture:</label>
+        <input type="file" name="picture" id="picture" accept="image/*" />
+    </fieldset>
+    <button class="btn btn-secondary offset-1">Save</button>
+</form>
