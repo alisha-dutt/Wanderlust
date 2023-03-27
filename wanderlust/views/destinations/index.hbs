@@ -1,9 +1,9 @@
 <h1>All Destinations</h1>
-<a class="nav-link text-dark btn btn-secondary offset-1" href="/destinations/create">Add Your Experience</a>
+<a class=" btn btn-primary m-2" href="/destinations/create">Add Your Experience</a>
 
 {{#if destinations.length}}
-  <table>
-    <thead>
+  <table style="width:100%" class="table table-hover responsive nowrap">
+    <thead class="bg-success">
       <tr>
         <th>Name</th>
         <th>City</th>
@@ -15,7 +15,7 @@
     </thead>
     <tbody>
       {{#each destinations}}
-        <tr>
+        <tr class="bg-warning">
           <td>{{this.placeName}}</td>
           <td>{{this.placeCity}}</td>
           <td>{{this.comments}}</td>

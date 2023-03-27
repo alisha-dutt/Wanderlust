@@ -4,7 +4,6 @@ const express = require('express');
 const router = express.Router();
 const multer = require('multer');
 
-
 // Display list of all destinations.
 router.get('/', (req, res) => {
   // get data from mongodb using the Employer model
@@ -80,7 +79,7 @@ router.get('/', (req, res) => {
               }
               else {
                    res.render('destinations/edit', {
-                      // destinations: destinations,
+                      destinations: destinations,
                       title: 'Edit Destination Details',
                       cities: cities,
                       user: req.user
