@@ -1,11 +1,15 @@
 <h1>All Destinations</h1>
-<a class=" btn btn-info lead text-white m-2" href="/auth/login">Want to add your Experience?Log In to
-  add</a>
 {{#if destinations.length}}
-{{#if ../user}}
+{{#if user}}
 <a class="btn btn-info text-white m-2" href="/destinations/create">Add Your Experience</a>
 {{/if}}
-<div class="conatiner">
+{{else}}
+<a class=" btn btn-info lead text-white m-2" href="/auth/login">Want to add your Experience?Log In to
+  add</a>
+{{/if}}
+
+<div class="container">
+
   <div class="row">
     {{#each destinations}}
     <div class="col-3 mb-3">
@@ -21,28 +25,26 @@
             <i class="fa-solid fa-location-dot text-dark"></i> {{this.placeCity}}
           </small>
           <br />
-
           <p class="card-text"><i class="fa-solid fa-quote-left text-success"></i>
             {{this.comments}}
             <i class="fa-solid fa-quote-right text-success"></i>
           </p>
           {{#if ../user}}
-          <a href="/destinations/edit/{{this._id}}" title="Edit"><i class="fa-solid fa-pen-to-square"></i></a>
-          <a href="/destinations/delete/{{this._id}}" title="Delete" onclick="return confirmDelete();">
-            <i class="fa-solid fa-trash-can"></i>
-            <a href="/destinations/edit/{{this._id}}" class="btn btn-warning" title="Edit"><i
-                class="fa-regular fa-pen-to-square text-dark">Edit</i></a>
-            <a href="/destinations/delete/{{this._id}}" class="btn btn-warning" title="Delete"
-              onclick="return confirmDelete();"><i class="text-dark fa-solid fa-trash-can">Delete</i> </a>
-            {{/if}}
+          <a href="/destinations/edit/{{this._id}}" class="btn btn-warning" title="Edit"><i
+              class="fa-regular fa-pen-to-square text-dark"></i> Edit</a>
+          <a href="/destinations/delete/{{this._id}}" class="btn btn-warning" title="Delete"
+            onclick="return confirmDelete();"><i class="text-dark fa-solid fa-trash-can"></i> Delete</a>
+          {{else}}
+          <p class="text-warning">Want to Edit Info? Register & Log In</p>
+          {{/if}}
         </div>
         <div class="card-footer text-muted d-flex justify-content-between bg-transparent border-top-0">
           <div class="views">
+            <hr />
             <p class="text-muted">{{Date}}</p>
             <p class="text-muted">Last Visit:
               <script>document.write(new Date().toLocaleString());</script>
             </p>
-
           </div>
         </div>
       </div>
@@ -50,6 +52,3 @@
     {{/each}}
   </div>
 </div>
-{{else}}
-<p>No destinations found.</p>
-{{/if}}
