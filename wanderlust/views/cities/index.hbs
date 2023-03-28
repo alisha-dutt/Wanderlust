@@ -1,0 +1,23 @@
+<h1>All Cities</h1>
+<a class=" btn btn-info lead text-white m-2" href="/auth/register">Can't find your City? Register or Log In to add</a>
+{{#if ../user}}
+<a class=" btn btn-primary m-2" href="/cities/create">Add Your City</a>
+{{/if}}
+
+{{#if cities.length}}
+<div class="conatiner bg-translucent p-3 m-2">
+    <div class="row">
+        {{#each cities}}
+        <div class="col-3 mb-3">
+
+            <p class="text-dark  lead cat">
+                <i class="fa-solid fa-location-dot text-dark"></i> {{this.name}}
+            </p>
+
+        </div>
+        {{/each}}
+    </div>
+</div>
+{{else}}
+<p>No destinations found.</p>
+{{/if}}

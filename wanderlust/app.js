@@ -27,7 +27,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 if (process.env.NODE_ENV != 'production') {
   require('dotenv').config()
 }
-
 // mongodb connection using mongoose
 const mongoose = require('mongoose');
 
@@ -38,6 +37,13 @@ mongoose.connect(process.env.CONNECTION_STRING)
 .catch(() => {
   console.log('Connection to MongoDB Failed');
 });
+
+// Google oAuth
+
+
+// Facebook oAuth
+
+
 
 // passport auth config
 const passport = require('passport');
@@ -65,6 +71,16 @@ app.use('/destinations', destinations);
 app.use('/cities', cities);
 // map all requests at /auth to auth.js controller for authorization
 app.use('/auth', auth);
+
+// hbs extention to select correct dropdown option
+const hbs = require('hbs');
+hbs.registerHelper('selectOption', (currentValue, selectedValue) => {
+  let selectedProperty = '';
+  if(currentValue == selectedValue) {
+    selectedProperty = ' selected';
+  }
+  return new hbs.SafeString(`<option${selectedProperty}>${currentValue}</option>`)
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

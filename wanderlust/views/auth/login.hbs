@@ -4,18 +4,24 @@
 {{else}}
     <p class="alert alert-secondary">Please enter your credentials</p>   
 {{/if}}
+<div class="container bg-translucent p-2 pt-4">
 <form method="post">
     <fieldset class="form-group">
         <label for="username" class="col-2 control-label">Username: *</label>
-        <input name="username" id="username" required />
+        <input class="w-25" name="username" id="username" required />
     </fieldset>
     <fieldset class="form-group">
         <label for="password" class="col-2 control-label">Password: *</label>
-        <input name="password" id="password" type="password" required />
+        <input class="w-25" name="password" id="password" type="password" required />
     </fieldset>
     <fieldset class="form-group">
-        <button class="btn btn-secondary offset-2">Login</button><img src="/images/google.png"/>
+        <button class="btn btn-secondary offset-2 w-25">Login</button>
+        <br />
+        <img src="/images/google.png" class="google-signin offset-2">
+        <br />
+        <img src="/images/facebook.png" alt="facebook login" class="facebook-signin offset-2">
         <hr />
         Need an account? <a href="/auth/register" title="Register">Register</a>
     </fieldset>
 </form>
+</div>

@@ -93,10 +93,11 @@ tbody{
 main{
   background-image: url(../images/banner.jpg);
   background-size: cover;
-  height: 770px;
+  min-height: 770px;
 }
 .bg-translucent{
   background-color: #ffffffb2;
+  border-radius: 30px;
   }
 .home-loud{
   font-size: 120px;
@@ -106,4 +107,10 @@ main{
 }
 .drop{
   filter: drop-shadow(0 0 0.75rem #4caf50);
+}
+.google-signin{
+  width: 230px;
+}
+.facebook-signin{
+  width: 234px;
 }

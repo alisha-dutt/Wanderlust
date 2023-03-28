@@ -2,11 +2,9 @@ const Destination = require('../models/destinations');
 const City = require('../models/city');
 const express = require('express');
 const router = express.Router();
-const multer = require('multer');
 
-// Display list of all destinations.
+// Display destinations
 router.get('/', (req, res) => {
-  // get data from mongodb using the Employer model
   Destination.find((err, destinations) => {
       if (err) {
           console.log(err)
@@ -24,7 +22,6 @@ router.get('/', (req, res) => {
 /* GET /create - display form to add a place */
 // router.get('/create', global.isAuthenticated, (req, res) => {
   router.get('/create', (req, res) => {
-  // use City model to fetch list of cities from db to populate city dropdown
   City.find((err, cities) => {
       if (err) {
           console.log(err);
@@ -39,9 +36,10 @@ router.get('/', (req, res) => {
   }).sort('name');    
 });
 
-/* POST /create - submit form data to mongodb */
+/* POST /create - submit form */
 // router.post('/create', global.isAuthenticated, (req, res) => {
   router.post('/create', (req, res) => {
+    console.log(req.body);
     Destination.create(req.body, (err, newDocument) => {
       if (err) {
           console.log(err);
@@ -52,7 +50,7 @@ router.get('/', (req, res) => {
   });
 });
 
-/* GET /delete/abc123 => delete selected destination document using the url param.  : indicates param */
+/* GET /delete/:_id */
 // router.get('/delete/:_id', global.isAuthenticated, (req, res) => {
   router.get('/delete/:_id', (req, res) => {
   Destination.remove({ _id: req.params._id }, (err) => {
@@ -65,7 +63,7 @@ router.get('/', (req, res) => {
   });
 });
 
-/* GET /edit/abc123 => fetch & display selected destinations */
+/* GET /edit/:_id => fetch & display selected destination data for editing */
 // router.get('/edit/:_id', global.isAuthenticated, (req, res) => {
   router.get('/edit/:_id', (req, res) => {
   Destination.findById(req.params._id, (err, destinations) => {
@@ -90,7 +88,7 @@ router.get('/', (req, res) => {
   });
 });
 
-/* POST /edit/abc123 => update seleted destinations */
+// /* POST /edit/:_id => update destination */
 // router.post('/edit/:_id', global.isAuthenticated, (req, res) => {
   router.post('/edit/:_id',(req, res) => {
   Destination.findByIdAndUpdate({ _id: req.params._id }, req.body, null, (err) => {

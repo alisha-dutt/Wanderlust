@@ -11,9 +11,6 @@ const destinationsSchema = new mongoose.Schema({
   },
   comments: {
     type: String
-  },
-  picture: {
-    type: String
   }
 });
 

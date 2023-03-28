@@ -1,35 +1,55 @@
 <h1>All Destinations</h1>
-<a class=" btn btn-primary m-2" href="/destinations/create">Add Your Experience</a>
-
+<a class=" btn btn-info lead text-white m-2" href="/auth/login">Want to add your Experience?Log In to
+  add</a>
 {{#if destinations.length}}
-  <table style="width:100%" class="table table-hover responsive nowrap">
-    <thead class="bg-success">
-      <tr>
-        <th>Name</th>
-        <th>City</th>
-        <th>Comments</th>
-        <th>Picture</th>
-        <th>Edit</th>
-        <th>Delete</th>
-      </tr>
-    </thead>
-    <tbody>
-      {{#each destinations}}
-        <tr class="bg-warning">
-          <td>{{this.placeName}}</td>
-          <td>{{this.placeCity}}</td>
-          <td>{{this.comments}}</td>
-          <td>
-            {{#if this.picture}}
-              <img src="{{this.picture}}" alt="{{this.name}}" width="100" height="100" />
+{{#if ../user}}
+<a class="btn btn-info text-white m-2" href="/destinations/create">Add Your Experience</a>
+{{/if}}
+<div class="conatiner">
+  <div class="row">
+    {{#each destinations}}
+    <div class="col-3 mb-3">
+      <div class="card">
+        <img class="card-img" src="https://source.unsplash.com/800x600/?landscape" alt="destinations">
+        <div class="card-img-overlay">
+          <a href="#" class="btn btn-light btn-sm"> <i
+              class="fa-solid fa-location-dot text-dark"></i>{{this.placeCity}}</a>
+        </div>
+        <div class="card-body">
+          <h4 class="card-title">{{this.placeName}}</h4>
+          <small class="text-muted cat">
+            <i class="fa-solid fa-location-dot text-dark"></i> {{this.placeCity}}
+          </small>
+          <br />
+
+          <p class="card-text"><i class="fa-solid fa-quote-left text-success"></i>
+            {{this.comments}}
+            <i class="fa-solid fa-quote-right text-success"></i>
+          </p>
+          {{#if ../user}}
+          <a href="/destinations/edit/{{this._id}}" title="Edit"><i class="fa-solid fa-pen-to-square"></i></a>
+          <a href="/destinations/delete/{{this._id}}" title="Delete" onclick="return confirmDelete();">
+            <i class="fa-solid fa-trash-can"></i>
+            <a href="/destinations/edit/{{this._id}}" class="btn btn-warning" title="Edit"><i
+                class="fa-regular fa-pen-to-square text-dark">Edit</i></a>
+            <a href="/destinations/delete/{{this._id}}" class="btn btn-warning" title="Delete"
+              onclick="return confirmDelete();"><i class="text-dark fa-solid fa-trash-can">Delete</i> </a>
             {{/if}}
-          </td>
-          <td><a href="/destinations/{{this._id}}/edit">Edit</a></td>
-          <td><a href="/destinations/{{this._id}}/delete">Delete</a></td>
-        </tr>
-      {{/each}}
-    </tbody>
-  </table>
+        </div>
+        <div class="card-footer text-muted d-flex justify-content-between bg-transparent border-top-0">
+          <div class="views">
+            <p class="text-muted">{{Date}}</p>
+            <p class="text-muted">Last Visit:
+              <script>document.write(new Date().toLocaleString());</script>
+            </p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+</div>
 {{else}}
-  <p>No destinations found.</p>
+<p>No destinations found.</p>
 {{/if}}
