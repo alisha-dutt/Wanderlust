@@ -94,7 +94,7 @@ tbody{
 main{
 /* background-image: url(../images/home-bg.jpg); */
 background-size: cover; 
-min-height: 770px;
+min-height: 769px;
 }
 .bg-translucent{
   background-color: #ffffffb2;
