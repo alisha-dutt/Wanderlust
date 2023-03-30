@@ -10,10 +10,10 @@
 
 <div class="container">
 
-  <div class="row">
+  <div class="row m-0 p-0">
     {{#each destinations}}
-    <div class="col-3 mb-3">
-      <div class="card">
+    <div class="col-3  border border-1 m-2 p-2 bg-white">
+      <div class="card border-0">
         <img class="card-img" src="https://source.unsplash.com/800x600/?landscape" alt="destinations">
         <div class="card-img-overlay">
           <a href="#" class="btn btn-light btn-sm"> <i
@@ -29,25 +29,17 @@
             {{this.comments}}
             <i class="fa-solid fa-quote-right text-success"></i>
           </p>
-          {{#if ../user}}
-          <a href="/destinations/edit/{{this._id}}" class="btn btn-warning" title="Edit"><i
-              class="fa-regular fa-pen-to-square text-dark"></i> Edit</a>
-          <a href="/destinations/delete/{{this._id}}" class="btn btn-warning" title="Delete"
-            onclick="return confirmDelete();"><i class="text-dark fa-solid fa-trash-can"></i> Delete</a>
-          {{else}}
-          <p class="text-warning">Want to Edit Info? Register & Log In</p>
-          {{/if}}
-        </div>
-        <div class="card-footer text-muted d-flex justify-content-between bg-transparent border-top-0">
-          <div class="views">
-            <hr />
-            <p class="text-muted">{{Date}}</p>
-            <p class="text-muted">Last Visit:
-              <script>document.write(new Date().toLocaleString());</script>
-            </p>
-          </div>
         </div>
       </div>
+      {{#if ../user}}
+      <a href="/destinations/edit/{{this._id}}" class="btn btn-warning offset-2  " title="Edit"><i
+          class="fa-regular fa-pen-to-square text-dark"></i> Edit</a>
+      <a href="/destinations/delete/{{this._id}}" class="btn btn-warning" title="Delete"
+        onclick="return confirmDelete();"><i class="text-dark fa-solid fa-trash-can"></i> Delete</a>
+      {{else}}
+      <p class="text-warning">Want to Edit Info? Register & Log In</p>
+      {{/if}}
+
     </div>
     {{/each}}
   </div>

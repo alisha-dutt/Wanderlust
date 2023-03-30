@@ -3,7 +3,6 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const multer =require('multer');
 
 const indexRouter = require('./controllers/index');
 const usersRouter = require('./controllers/users');
@@ -38,12 +37,6 @@ mongoose.connect(process.env.CONNECTION_STRING)
   console.log('Connection to MongoDB Failed');
 });
 
-// Google oAuth
-
-
-// Facebook oAuth
-
-
 
 // passport auth config
 const passport = require('passport');
@@ -63,6 +56,26 @@ passport.use(User.createStrategy());
 // read / write session vars
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+
+
+// Google oAuth
+const googleStrategy = require('passport-google-oauth20').Strategy;
+passport.use(new googleStrategy({
+  clientID: process.env.GOOGLE_CLIENT_ID,
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  callbackURL: process.env.GOOGLE_CALLBACK_URL
+}, (accessToken, refreshToken, profile, done) => {
+  User.findOrCreate({oauthId: profile.id }, {
+    username: profile.displayName,
+    oauthProvider: 'Google'
+  }, (err, user) => {
+    return done(err, user);
+  })
+}));
+
+// Facebook oAuth
+
+
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
