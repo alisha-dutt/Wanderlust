@@ -92,7 +92,7 @@ tbody{
 }
 
 main{
-background-image: url(../images/home-bg.jpg);
+/* background-image: url(../images/home-bg.jpg); */
 background-size: cover; 
 min-height: 770px;
 }
